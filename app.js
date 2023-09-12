@@ -8,7 +8,7 @@ addBtn.addEventListener('click', () => {
     const newItemText = itemInput.value.trim();
     if (newItemText !== '') {
         const newItem = document.createElement('li');
-        newItem.textContent = newItemText;
+        newItem.innerHTML = `<i class="fas fa-clock task-icon"></i>${newItemText}<i class="fas fa-check check-icon"></i>`;
         list.appendChild(newItem);
         itemInput.value = '';
 
@@ -21,11 +21,13 @@ addBtn.addEventListener('click', () => {
         // Manejador de clic para eliminar el elemento
         deleteBtn.addEventListener('click', () => {
             list.removeChild(newItem);
+            saveListToLocalStorage();
         });
 
         // Marcar elementos como completados
         newItem.addEventListener('click', () => {
             newItem.classList.toggle('completed');
+            saveListToLocalStorage();
         });
 
         // Guardar la lista en el almacenamiento local
